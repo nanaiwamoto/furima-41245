@@ -1,13 +1,10 @@
-<main class="main">
-  <div class="inner">
-    <% if user_signed_in? %>
-      <div class="greeting">
-        こんにちは、
-        <%= link_to "#{current_user.name}さん", user_path(current_user), class: :greeting__link%>
-      </div>
-    <% end %>
-    <div class="card__wrapper">
-      <%= render partial: 'prototype', collection: @prototypes %>
+<div class="contents row">
+  <% @tweets.each do |tweet| %>
+    <div class="content_post" style="background-image: url(<%= tweet.image %>);">
+      <p><%= tweet.text %></p>
+      <span class="name">
+        <%= tweet.name %>
+      </span>
     </div>
-  </div>
-</main>
+  <% end %>
+</div>
