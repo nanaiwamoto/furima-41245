@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_11_17_060515) do
+ActiveRecord::Schema[7.0].define(version: 2024_11_17_061639) do
   create_table "items", charset: "utf8", force: :cascade do |t|
     t.string "name"
     t.string "text"
@@ -25,6 +25,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_17_060515) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "last_name"
+    t.string "first_name"
+    t.string "last_name_kana"
+    t.string "first_name_kana"
+    t.date "birth_date"
   end
 
 end
