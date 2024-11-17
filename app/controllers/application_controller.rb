@@ -1,8 +1,12 @@
 class ApplicationController < ActionController::Base
-  before_action :basic_auth
-
+  before_action :authenticate_user!
+  
+  # DeviseヘルパーをViewで使用するための記述
+  helper_method :current_user, :user_signed_in?, :user_session
+end
 
   private
+
 
   def basic_auth
     authenticate_or_request_with_http_basic do |username, password|
