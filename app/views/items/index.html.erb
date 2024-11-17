@@ -181,6 +181,22 @@
     </ul>
   </div>
   <%# /商品一覧 %>
+  <h1>記事一覧</h1>
+<%= link_to "投稿する", new_item_path, class:"post" %>
+
+<% @articles.each do |item| %>
+  <div class="item">
+    <div class="item-genre">
+      <%= item.genre.name %>
+    </div>
+    <div class="item-title">
+      <%= article.title %>
+    </div>
+    <div class="item-text">
+      <%= item.text %>
+    </div>
+  </div>
+<% end %>
 </div>
 <%= link_to('#', class: 'purchase-btn') do %>
   <span class='purchase-btn-text'>出品する</span>
