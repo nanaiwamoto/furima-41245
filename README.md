@@ -31,72 +31,62 @@ Things you may want to cover:
 | ------------------ | ------ | ----------- |
 | nickname           | string | null: false |
 | email              | string | null: false, unique: true |
-| password           | string | null: false |
+| encrypted_password | string | null: false |
 | lastname           | string | null: false |
 | firstname          | string | null: false |
 | lastknamekana      | string | null: false |
 | firstnamekana      | string | null: false |
-| birthdate          | string | null: false |
+| birthdate          | date   | null: false |
 
 ### Association ?
-- has_many :oders
+- has_many :orders
 - has_many :items
 
 
 ## items テーブル
 
-| Column           | Type   | Options     |
-| ------           | ------ | ----------- |
-| seller_id        | string | null: false |
-| item_image       | string | null: false |
-| item_name        | string | null: false |
-| item_description | string | null: false |
-| item_category    | string | null: false |
-| item_condition   | string | null: false |
-| shopping_cost    | string | null: false |
-| shopping_region  | string | null: false |
-| shopping_days    | string | null: false |
-| price            | string | null: false |
-| sales_fee        | string | null: false |
-| profit           | string | null: false |
+| Column            | Type      | Options                               |
+| ------            | ------    | -----------                           |
+| seller_id         | reference | null: false, foreign_key: true        |
+| item_name         | string    | null: false                           |
+| item_description  | text      | null: false                           |
+| item_category_id  | integer   | null: false                           |
+| item_condition_id | integer   | null: false                           |
+| shopping_cost_id  | integer   | null: false                           |
+| shopping_region_id| integer   | null: false                           |
+| shopping_day_id   | integer   | null: false                           |
+| price             | integer   | null: false                           |
 
 
 ### Association
 
 - belongs_to :user
-- belongs_to :oder
-- belongs_to :item
+- has_one    :order
 
 ## orders テーブル
 
 | Column                | Type       | Options                        |
 | ------                | ---------- | ------------------------------ |
-| item                  | string     | null: false |
-| items_id              | string     | null: false |
-| item_name             | string     | null: false |
-| price                 | string     | null: false |
-| payment_amount        | string     | null: false |
-| shopping_cost         | string     | null: false |
-| purchasedate          | string     | null: false |
-| deliveryaddresses_id  | string     | null: false |
-
+| item_name             | references | null: false, foreign_key: true |
+| user_id               | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
-- belongs_to :delivery address
+- has_one :order_address
 
-## deliveryaddresses テーブル
+## order_addresses テーブル
 
 | Column                | Type       | Options                        |
 | -------               | ---------- | ------------------------------ |
-| postalcode            | string     | null: false |
-| state                 | string     | null: false |
-| city                  | string     | null: false |
-| street_address        | string     | null: false |
-| building_name         | string     | null: false |
-| tel                   | string     | null: false |
+| postalcode            | string     | null: false                    |
+| shopping_region_id    | integer    | null: false                    |
+| city                  | string     | null: false                    |
+| street_address        | string     | null: false                    |
+| building_name         | string     |                                |
+| tel                   | string     | null: false                    |
+| order_id              | references | null: false, foreign_key: true |
 
 
 ### Association
