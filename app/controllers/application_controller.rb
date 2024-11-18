@@ -1,9 +1,16 @@
 class ApplicationController < ActionController::Base
-  #ログインしていないユーザーをログインページの画面に促す
-  before_action :authenticate_user!
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
-  # DeviseヘルパーメソッドをViewで使用するための記述
-  helper_method :current_user, :user_signed_in?, :user_session
+  private
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [
+      :nickname,
+      :last_name,
+      :first_name,
+      :last_name_kana,
+      :first_name_kana,
+      :birth_date
+    ])
+  end
 end
-
-

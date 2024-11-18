@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  root to: 'items#index'
   devise_for :users
-  resources :items, only: :index
+  root to: 'items#index'
+  resources :items
   # 他のルーティング
 end

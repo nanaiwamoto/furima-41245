@@ -1,14 +1,25 @@
 class User < ApplicationRecord
-  has_secure_password
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+# バリデーションを追加
+validates :nickname, presence: true
+validates :birth_date, presence: true
+validates :last_name, presence: true
+validates :first_name, presence: true
+validates :last_name_kana, presence: true
+validates :first_name_kana, presence: true
 
-  validates :nickname, presence: true
-  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validates :password, presence: true, length: { minimum: 6 }, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i }
+# カナ文字のバリデーション（全角カタカナのみ許可）
+validates :last_name_kana, format: { with: /\A[ァ-ヶー－]+\z/ }
+validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/ }
 
-  validates :last_name, presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/ }
-  validates :first_name, presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/ }
-  validates :last_name_kana, presence: true, format: { with: /\A[\p{katakana}ー－]+\z/ }
-  validates :first_name_kana, presence: true, format: { with: /\A[\p{katakana}ー－]+\z/ }
-  validates :birth_date, presence: true
+# 漢字・ひらがな・カタカナのバリデーション
+validates :last_name, format: { with: /\A[ぁ-んァ-ン一-龥々ー]+\z/ }
+validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥々ー]+\z/ }
+
+# パスワードの英数字混合バリデーション
+validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i }
 
 end
