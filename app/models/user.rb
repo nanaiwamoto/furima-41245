@@ -1,25 +1,25 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-# バリデーションを追加
-validates :nickname, presence: true
-validates :birth_date, presence: true
-validates :last_name, presence: true
-validates :first_name, presence: true
-validates :last_name_kana, presence: true
-validates :first_name_kana, presence: true
 
-# カナ文字のバリデーション（全角カタカナのみ許可）
-validates :last_name_kana, format: { with: /\A[ァ-ヶー－]+\z/ }
-validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/ }
+  # パスワードの正規表現を定数として定義
+  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i
 
-# 漢字・ひらがな・カタカナのバリデーション
-validates :last_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }
-validates :first_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }
+  validates :nickname, presence: true
+  validates :birth_date, presence: true
+  validates :last_name, presence: true
+  validates :first_name, presence: true
+  validates :last_name_kana, presence: true
+  validates :first_name_kana, presence: true
 
-# パスワードの英数字混合バリデーション
-validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i }
+  validates :last_name_kana, format: { with: /\A[ァ-ヶー－]+\z/ }
+  validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/ }
 
+  validates :last_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }
+  validates :first_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }
+
+  validates :password, format: { 
+    with: VALID_PASSWORD_REGEX,
+    message: "must include at least one letter and one number"
+  }
 end
