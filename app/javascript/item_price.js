@@ -7,21 +7,26 @@ const profitDisplay = document.getElementById("profit");
 
 // 入力イベントリスナーの設定
 itemPriceInput.addEventListener("input", () => {
-  const itemPrice = parseInt(itemPriceInput.value); // 入力値を数値に変換
+  const itemPrice = parseFloat(itemPriceInput.value);
 
   if (isNaN(itemPrice)) {
     // 無効な値の場合、表示をリセット
     feeDisplay.textContent = "";
     profitDisplay.textContent = "";
   } else {
-    const fee = Math.floor(itemPrice * 0.1); // 10%の手数料を計算
-    const profit = itemPrice - fee;         // 利益を計算
-    feeDisplay.textContent = fee;          // 手数料を表示
-    profitDisplay.textContent = profit;    // 利益を表示
-  }
+ // 手数料計算（小数点以下切り捨て）
+ const fee = Math.floor(itemPrice * 0.1);
+      
+ // 利益計算（小数点以下切り捨て）
+ const profit = Math.floor(itemPrice - fee);
+ 
+ // 結果を表示
+ feeDisplay.textContent = fee;
+ profitDisplay.textContent = profit;
+}
 });
-
 };
 
+// イベントリスナーの設定
 window.addEventListener("turbo:load", price);
 window.addEventListener("turbo:render", price);
