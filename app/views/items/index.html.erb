@@ -1,6 +1,8 @@
 <%= render "shared/header" %>
 <div class='main'>
+
   <%# 前半部分は変更なしのため省略 %>
+
 
   <%# 商品一覧 %>
   <div class='item-contents'>
@@ -9,6 +11,7 @@
       新規投稿商品
     </div>
     <ul class='item-lists'>
+
       <%# ここから修正箇所 %>
       <% if @items.present? %>
         <% @items.each do |item| %>
@@ -23,6 +26,7 @@
                     <%#  <span>Sold Out!!</span>  コメントアウト%>
                   </div>
                 <% end %>
+
               </div>
               <div class='item-info'>
                 <h3 class='item-name'>
@@ -36,10 +40,12 @@
                   </div>
                 </div>
               </div>
+
             <%# end %>  <%# コメントアウト %>
           </li>
         <% end %>
       <% else %>
+
         <li class='list'>
           <%= link_to '#' do %>
             <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
@@ -60,11 +66,14 @@
       <% end %>
     </ul>
   </div>
+
   <%# //商品一覧 %>
+
 
   <%= link_to(new_item_path, class: 'purchase-btn') do %>
     <span class='purchase-btn-text'>出品する</span>
     <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
   <% end %>
 </div>
+
 <%= render "shared/footer" %>
