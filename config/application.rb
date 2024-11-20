@@ -12,7 +12,9 @@ module Furima41245
     config.load_defaults 7.0
     config.autoload_paths += %W(#{config.root}/app/models)
 
-
+  
+    #画像処理にMini_magicを使用する
+    config.active_storage.variant_processor = :mini_magick
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
@@ -20,5 +22,9 @@ module Furima41245
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    #  config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
+    config.i18n.default_locale = :ja
+    config.i18n.available_locales = [:ja, :en]
+    config.i18n.enforce_available_locales = true
   end
 end
