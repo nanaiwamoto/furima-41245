@@ -1,9 +1,13 @@
 class User < ApplicationRecord
+  # 商品購入機能実装時までOUT
+  # has_many :orders
+  has_many :items
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
   # パスワードの正規表現を定数として定義
-  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i
+  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i
 
   validates :nickname, presence: true
   validates :birth_date, presence: true
@@ -18,8 +22,8 @@ class User < ApplicationRecord
   validates :last_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }
   validates :first_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }
 
-  validates :password, format: { 
+  validates :password, format: {
     with: VALID_PASSWORD_REGEX,
-    message: "must include at least one letter and one number"
+    message: 'must include at least one letter and one number'
   }
 end
