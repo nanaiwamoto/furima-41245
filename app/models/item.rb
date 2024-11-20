@@ -2,7 +2,6 @@ class Item < ApplicationRecord
   belongs_to :user
   # 商品購入機能実装までOUT has_one :order
   has_one_attached :image
-  has_one :order
 
   # アクティブハッシュのアソシエーション
   extend ActiveHash::Associations::ActiveRecordExtensions

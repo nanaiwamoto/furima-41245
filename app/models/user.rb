@@ -1,8 +1,7 @@
 class User < ApplicationRecord
-
   has_many :items
-  has_many :orders
-
+  # 商品機能実装時にON
+  # has_many :orders
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
