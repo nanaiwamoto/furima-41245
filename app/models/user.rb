@@ -1,7 +1,7 @@
 class User < ApplicationRecord
-  #商品購入機能実装時までOUT
-  #has_many :items
-  #has_many :orders
+  # 商品購入機能実装時までOUT
+  # has_many :orders
+  has_many :items
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
