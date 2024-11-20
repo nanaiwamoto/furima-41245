@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-  # 以下、購入機能実装までOUT
-  # belongs_to :user
+  # 商品購入機能実装時にONにする
   # belongs_to :item
+  # belongs_to :user
 end
