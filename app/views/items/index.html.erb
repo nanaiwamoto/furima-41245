@@ -129,7 +129,7 @@
       <% if @items.present? %>
         <% @items.each do |item| %>
           <li class='list'>
-            <%# 商品詳細機能実装までOUT  
+            
             <%= link_to item_path(item.id) do %>
             
               <div class='item-img-content'>
@@ -140,9 +140,9 @@
                 <% if item.order.present? %>
                 
                   <div class='sold-out'>
-                    <%# <span>Sold Out!!</span  >
+                    <%# <span>Sold Out!!</span  > %>
                   </div>
-                <%# end %>
+                <% end %>
                 
               </div>
               <div class='item-info'>
