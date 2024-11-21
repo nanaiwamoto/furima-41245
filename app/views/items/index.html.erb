@@ -16,16 +16,22 @@
       <% if @items.present? %>
         <% @items.each do |item| %>
           <li class='list'>
-            <%= link_to item_path(item.id) do %> 
+
+            
+            <%= link_to item_path(item.id) do %>
+            
+
               <div class='item-img-content'>
                 <%= image_tag item.image, class: "item-img" %>  <%# ⭐️修正2: item-sample.pngからitem.imageに変更 %>
 
                 <%# 商品が売れていればsold outを表示しましょう %>
                 <%# if item.order.present? %>  <%# コメントアウト %>
                   <div class='sold-out'>
-                    <%#  <span>Sold Out!!</span>  コメントアウト%>
+
+                    <%# <span>Sold Out!!</span  > %>
                   </div>
                 <% end %>
+                
 
               </div>
               <div class='item-info'>
