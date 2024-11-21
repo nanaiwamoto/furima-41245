@@ -4,24 +4,29 @@
 <div class="item-show">
   <div class="item-box">
     <h2 class="name">
+
          <%= @item.name %>
     </h2>
     <div class="item-img-content">
       <%= image_tag @item.image, class:"item-box-img" %>
       <%# 商品が売れている場合は、sold outを表示しましょう
+
       <div class="sold-out">
-        <span>Sold Out!!</span>
+       <%#= <span>Sold Out!!</span> ソールドアウトをコメントアウト> %>
       </div>
       <%# //商品が売れている場合は、sold outを表示しましょう %>
     </div>
     <div class="item-price-box">
       <span class="item-price">
+
         ¥ <%= @item.price.to_s(:delimited) %> 
+
       </span>
       <span class="item-postage">
         <%= @item.shopping_cost.name %>
       </span>
     </div>
+
 
     <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
 <% if user_signed_in? %>
@@ -39,6 +44,7 @@
 
 
     <%# //ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
+
 
     <div class="item-explain-box">
       <span><%= @item.description %></span>
@@ -106,8 +112,10 @@
       後ろの商品 ＞
     </a>
   </div>
+
   <%# カテゴリー名 %>
   <a href="#" class="another-item"><%= @item.category.name %>をもっと見る</a>
+
 
 </div>
 
