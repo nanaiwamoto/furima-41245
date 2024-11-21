@@ -23,21 +23,25 @@ class ItemsController < ApplicationController
   def show
   end
 
-  # 削除機能
-  def destroy
-    if @item.user_id == current_user.id
-      @item.destroy
-      redirect_to root_path
+  # 商品情報編集ページを表示するアクション
+  def edit
+  end
+
+  # 商品情報を更新するアクション
+  def update
+    if @item.update(item_params)
+      redirect_to item_path(@item)
     else
-      redirect_to root_path
+      render :edit, status: :unprocessable_entity
     end
   end
 
-  private
-
-  def set_item
-    @item = Item.includes(:user).find(params[:id])
+  def destroy
+    @item.destroy
+    redirect_to root_path
   end
+
+  private
 
   def item_params
     params.require(:item).permit(
@@ -51,6 +55,10 @@ class ItemsController < ApplicationController
       :price,
       :image
     ).merge(user_id: current_user.id)
+  end
+
+  def set_item
+    @item = Item.includes(:user).find(params[:id])
   end
 
   def move_to_index
