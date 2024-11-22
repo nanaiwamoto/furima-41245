@@ -1,5 +1,7 @@
 class Order < ApplicationRecord
-  # 商品購入機能実装時にONにする
-  # belongs_to :item
-  # belongs_to :user
+  attr_accessor :token, :price
+
+  belongs_to :item
+  belongs_to :user
+  has_one :shopping_region
 end

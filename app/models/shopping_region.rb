@@ -53,4 +53,5 @@ class ShoppingRegion < ActiveHash::Base
 
   include ActiveHash::Associations
   has_many :items
+  has_many :order_addresses
 end
