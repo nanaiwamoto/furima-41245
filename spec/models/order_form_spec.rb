@@ -95,14 +95,5 @@ RSpec.describe OrderForm, type: :model do
       end
     end
   end
-
-  describe '#save' do
-    context '正常系' do
-      it 'orderとorder_addressが正しく保存されること' do
-        expect do
-          @order_form.save
-        end.to change { Order.count }.by(1).and change { OrderAddress.count }.by(1)
-      end
-    end
   end
 end

@@ -9,7 +9,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    # binding.pry
     @order_form = OrderForm.new(order_params)
     if @order_form.valid?
       Payjp.api_key = ENV['PAYJP_SECRET_KEY']
