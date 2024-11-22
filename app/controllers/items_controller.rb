@@ -55,15 +55,9 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    # ログインユーザーが出品者でない場合、トップページへ
-    return if current_user.id == @item.user_id
-
-    redirect_to root_path
-
-    # まだ商品購入機能を実装していないため、一時的にコメントアウト
-    # # 商品が売却済みの場合、トップページへ
-    # if @item.order.present?
-    #   redirect_to root_path
-    # end
+    if current_user.id == @item.user_id && !@item.order.present?
+    else
+      redirect_to root_path
+    end
   end
 end
