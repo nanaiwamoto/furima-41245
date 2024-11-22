@@ -143,10 +143,10 @@
                 <%= image_tag item.image, class: "item-img" %>  <%# ⭐️修正2: item-sample.pngからitem.imageに変更 %>
 
                 <%# 商品が売れていればsold outを表示しましょう %>
-                <%# if item.order.present? %>  <%# コメントアウト %>
+                <% if item.order.present? %>  
                   <div class='sold-out'>
 
-                    <%# <span>Sold Out!!</span  > %>
+                    <span>Sold Out!!</span> 
                   </div>
                 <% end %>
                 
@@ -165,7 +165,7 @@
                 </div>
               </div>
 
-            <%# end %>  <%# コメントアウト %>
+            <% end %>
           </li>
         <% end %>
       <% else %>

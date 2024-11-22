@@ -1,29 +1,35 @@
 class OrderForm
   include ActiveModel::Model
-  attr_accessor :postal_code, :prefecture_id, :city, :addresses, :building, :phone_number
-  attr_accessor :user_id, :item_id, :token
+  attr_accessor :postal_code, :shopping_region_id, :city, :street_address,
+                :building_name, :tel, :user_id, :item_id, :token
 
   with_options presence: true do
     validates :user_id
     validates :item_id
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/ }
-    validates :prefecture_id, numericality: { other_than: 1 }
+    validates :shopping_region_id, numericality: { other_than: 1 }
     validates :city
-    validates :addresses
-    validates :phone_number, format: { with: /\A\d{10,11}\z/ }
+    validates :street_address
+    validates :tel, format: { with: /\A\d{10,11}\z/ }
     validates :token
+    validates :user_id
+    validates :item_id
   end
 
   def save
     ActiveRecord::Base.transaction do
-      order = Order.create!(user_id: user_id, item_id: item_id)
-      ShippingAddress.create!(
+      order = Order.create!(
+        user_id: user_id,
+        item_id: item_id
+      )
+
+      OrderAddress.create!(
         postal_code: postal_code,
-        prefecture_id: prefecture_id,
+        shopping_region_id: shopping_region_id,
         city: city,
-        addresses: addresses,
-        building: building,
-        phone_number: phone_number,
+        street_address: street_address,  # addressesをstreet_addressに変更
+        building_name: building_name,    # buildingをbuilding_nameに変更
+        tel: tel,                        # phone_numberをtelに変更
         order_id: order.id
       )
     end
