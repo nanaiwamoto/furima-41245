@@ -95,5 +95,4 @@ RSpec.describe OrderForm, type: :model do
       end
     end
   end
-  end
 end

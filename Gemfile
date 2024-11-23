@@ -95,3 +95,7 @@ gem 'rails-i18n'
 gem 'payjp'
 
 gem 'gon'
+
+group :test do
+  gem 'database_cleaner'
+end
